@@ -1,7 +1,9 @@
-import firebase from 'firebase';
-import 'firebase/auth';
-import 'firebase/firestore';
+// import * as firebase from "firebase";
+import { initializeApp } from 'firebase/app';
+import {getAuth } from 'firebase/auth';
+import { getFirestore } from 'firebase/firestore';
 
+// Configuracoes do app firebase
 const firebaseConfig = {
   apiKey: "AIzaSyAdYmqjKeR2jvGfELWcRf6MFzn9lOMIGnY",
   authDomain: "frutusy.firebaseapp.com",
@@ -12,15 +14,9 @@ const firebaseConfig = {
   appId: "1:810190941583:web:def0aae8dc194cdb1deffa"
 };
 
-let app;
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
 
-if (firebase.apps.length === 0) {
-  app = firebase.initializeApp(firebaseConfig)
-} else {
-  app = firebase.app();
-}
-
-const db = app.firestore();
-const auth = firebase.auth();
-
-export { db, auth };
+const auth = getAuth();
+const db =  getFirestore(app);
+export default {auth, db};

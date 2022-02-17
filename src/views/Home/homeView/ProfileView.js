@@ -3,8 +3,22 @@ import {Text, View, TextInput, ImageBackground, FlatList, TouchableOpacity} from
 import { Ionicons } from '@expo/vector-icons';
 
 import styles from './StyleHomeBar';
+import {  getAuth, signOut } from "firebase/auth";
+
 
 export default function ProfileView() {
+
+    function LogOut(){
+        const auth = getAuth();
+        signOut(auth).then(() => {
+        // Sign-out successful.
+        navigation.reset({
+            routes: [{name: 'login'}]
+          });
+        }).catch((error) => {
+        // An error happened.
+        });
+    }
 
     return(
 
@@ -32,7 +46,9 @@ export default function ProfileView() {
                     </TouchableOpacity>
                 </View>
 
-                    <TouchableOpacity style={styles.section}>
+                    <TouchableOpacity style={styles.section}
+                        onPress={LogOut}
+                    >
                         <Ionicons name="exit-outline" size={24} color={'#000'}/>
                         <Text style={styles.text_view}>Sair</Text>
                     </TouchableOpacity>

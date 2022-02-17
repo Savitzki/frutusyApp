@@ -1,33 +1,27 @@
 import React, {useEffect, useState} from 'react';
-import  {View, Image} from 'react-native';
-import styles from './StylePreload';
-import { onAuthStateChanged } from "firebase/auth";
+import LoginView from '../Login/LoginView';
+import HomeView from '../Home/HomeView';
+
+import { auth } from '../../firebaseConection';
 
 export default function Preload( { navigation } ){
 
-      useEffect(() => {
-        firebase.auth().onAuthStateChanged((user) => {
-          if (user) {
-            // User is signed in, see docs for a list of available properties
-            // https://firebase.google.com/docs/reference/js/firebase.User
-            const uid = user.uid;
-            navigation.navigate('home');
-            // ...
-          } else {
-            // User is signed out
-            // ...
-          }
-        });
-        
-      }, []);
-      return(
+  const user = auth.currentUser;
 
-          <View style={styles.container}>
-
-            {/* LOGO DO APP */}
-            <View>
-              <Image style={styles.icon} source={require('../../assets/img/logo.png')} />
-            </View>
-          </View>
-      );
+  useEffect(() => {
+  onAuthStateChanged(auth, (user) => {
+  if (user) {
+    navigation.navigate('home');
+    const uid = user.uid;
+    // ...
+  } else {
+    navigation.navigate('login');
+    const uid = user.uid;
   }
+});
+  }, []);
+
+  return(
+    !user ? <LoginView /> : <HomeView />
+  );
+}

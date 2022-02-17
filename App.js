@@ -14,6 +14,7 @@ import CartResume from './src/views/Cart/CartResume';
 
 import AppLoading from 'expo-app-loading';
 import * as Font from 'expo-font';
+// import firebase from './src/firebaseConection';
 
 const Stack = createStackNavigator();
 
