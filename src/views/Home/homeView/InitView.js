@@ -1,12 +1,51 @@
-import React from "react";
-import {Text, View, TextInput, ImageBackground, TouchableOpacity,Image} from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import React, {useState} from "react";
+import {Text, View, TouchableOpacity,Image} from 'react-native';
 
 import styles from './StyleHomeBar';
 
 export default function InitView( { navigation } ) {
+    const [frutas, setFrutas] = useState(false);
+    const [verduras, setVerduras] = useState(false);
+    const [legumes, setLegumes] = useState(false);
+    // const [colorOption, setColorOption] = useState('');
 
     // Tela de inicio do app
+    const handleClickFruit = () => {
+        setFrutas(true);
+        // setColorOption('#d45959');
+
+        // Chamada de banco de dados
+
+        // Navegacao de tela
+        // console.log(colorOption);
+        navigation.navigate('listProduct', { 
+            name: 'Frutas'}, 
+        );
+    }
+    const handleClickGreens = () => {
+        setVerduras(true);
+        // setColorOption('#9fd76d');
+
+        // Chamada de banco de dados
+
+        // Navegacao de tela
+        navigation.navigate('listProduct', { 
+            name: 'Verduras'}, 
+        );
+    }
+    const handleClickVegetable = () => {
+        setLegumes(true);
+        // setColorOption('#FF941D');
+
+        // Chamada de banco de dados
+        
+        // Navegacao de tela
+        navigation.navigate('listProduct', {
+            name: 'Legumes',
+        });
+    }
+
+    // Funcao para realizar a busca no banco 
 
     return(
         <View style={[styles.container, {alignItems: 'center'}]}>
@@ -20,29 +59,31 @@ export default function InitView( { navigation } ) {
 
                         {/* Opcao FRUTA */}
                         <TouchableOpacity style={[styles.button, { backgroundColor:'#d45959' }]} activeOpacity={0.3} 
-                            onPress={() => navigation.navigate('listProduct')}>
+                            onPress={ handleClickFruit }>
                             <View style={[styles.button_set]} >
                                 <Image style={[styles.img_button]} source={require('../../../assets/img/melancia-96.png')} />
-                                <Text style={styles.text_view}>Frutas</Text>
+                                <Text style={styles.text_view_bold}>Frutas</Text>
                             </View>
                         </TouchableOpacity>
 
                         {/* Opcao VERDURA */}
-                        <TouchableOpacity style={[styles.button, { backgroundColor:'#9fd76d' }] } activeOpacity={0.3}>
+                        <TouchableOpacity style={[styles.button, { backgroundColor:'#9fd76d' }] } activeOpacity={0.3}
+                            onPress={ handleClickGreens }>
                             <View style={[styles.button_set]} >
                                 <Image style={[styles.img_button]} source={require('../../../assets/img/salada-96.png')} />
                                 <View style={{alignItems: 'center'}}>
-                                    <Text style={styles.text_view}>Verduras e</Text>
+                                    <Text style={styles.text_view_bold}>Verduras e</Text>
                                     <Text style={styles.text_view}>temperos</Text>
                                 </View>
                             </View>
                         </TouchableOpacity>
 
-                        {/* Opcao LEGUME */}
-                        <TouchableOpacity style={[styles.button, { backgroundColor:'#FF941D' }]} activeOpacity={0.3}>
+                        {/* Opcao LEGUMEs */}
+                        <TouchableOpacity style={[styles.button, { backgroundColor:'#FF941D' }]} activeOpacity={0.3}
+                            onPress={ handleClickVegetable }>
                             <View style={[styles.button_set]} >
                                 <Image style={[styles.img_button,]} source={require('../../../assets/img/batata-96.png')} />
-                                <Text style={styles.text_view}>Legumes</Text>
+                                <Text style={styles.text_view_bold}>Legumes</Text>
                             </View>
                         </TouchableOpacity>
                         </View>

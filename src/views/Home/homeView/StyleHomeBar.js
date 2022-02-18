@@ -11,17 +11,16 @@ const styles = StyleSheet.create({
         padding: 10,
     },
     text_view_bold:{
-        fontSize: 20,
+        fontSize: 22,
         color: '#373737',
         margin: 5,
-        fontFamily: 'Baloo-semiBold'
+        fontFamily: 'Baloo-bold',
     },
     text_view:{
         fontSize: 20,
         color: '#373737',
         margin: 5,
         fontFamily: 'Baloo-regular',
-        marginLeft: 10,
     },
     text_profile:{
         fontSize: 24,

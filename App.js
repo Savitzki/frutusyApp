@@ -1,5 +1,6 @@
 import React  from 'react';
 import { StyleSheet } from "react-native";  
+import { useRoute } from '@react-navigation/native';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -18,12 +19,15 @@ import * as Font from 'expo-font';
 
 const Stack = createStackNavigator();
 
+
 export default class App extends React.Component{
   state = {
     fontsLoaded: false,
   };
 
-  componentDidMount() {
+  
+
+   componentDidMount() {
     this.loadFonts();
   }
 
@@ -70,13 +74,13 @@ export default class App extends React.Component{
             <Stack.Screen name='register' component={RegisterView} options={{headerShown: false}}/>
 
             <Stack.Screen name='listProduct' component={ListProductView}
-              options={{ 
+              options={({route}) => ({ 
                 headerTintColor: '#373737', 
-                headerStyle: styles.headerView, 
+                headerStyle: styles.headerView,
                 headerTitleStyle: { fontFamily: 'Baloo-semiBold', fontSize: 25}, 
                 headerTitleAlign: 'center',
-                title: 'Frutas'
-            }}/>
+                title: route.params.name,
+            })}/>
 
             <Stack.Screen name='cartResume' component={CartResume} 
               options={{ headerTintColor: '#373737', headerStyle: styles.headerView, 
@@ -100,11 +104,13 @@ export default class App extends React.Component{
 
             <Stack.Screen name='home' 
                 component={HomeView} 
-                options={{ headerTintColor: '#373737', headerStyle: styles.headerView, 
-                headerTitleStyle: { fontFamily: 'Baloo-semiBold', fontSize: 25}, 
-                headerTitleAlign: 'center',
-                headerLeft: false,
-                title: 'Frutusy'
+                options={{ 
+                  headerTintColor: '#373737', 
+                  headerStyle: styles.headerView,
+                  headerTitleStyle: { fontFamily: 'Baloo-semiBold', fontSize: 25}, 
+                  headerTitleAlign: 'center',
+                  headerLeft: false,
+                  title: 'Frutusy'
             }} />
           </Stack.Navigator>
         </NavigationContainer>
@@ -115,5 +121,5 @@ export default class App extends React.Component{
 const styles = StyleSheet.create({
   headerView:{
     backgroundColor:"#FFE656",
-},
+  },
 });
