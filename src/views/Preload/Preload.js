@@ -9,16 +9,16 @@ export default function Preload( { navigation } ){
   const user = auth.currentUser;
 
   useEffect(() => {
-  onAuthStateChanged(auth, (user) => {
-  if (user) {
-    navigation.navigate('home');
-    const uid = user.uid;
-    // ...
-  } else {
-    navigation.navigate('login');
-    const uid = user.uid;
-  }
-});
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        navigation.navigate('home');
+        const uid = user.uid;
+        // ...
+      } else {
+        navigation.navigate('login');
+        const uid = user.uid;
+      }
+    });
   }, []);
 
   return(

@@ -1,5 +1,5 @@
-import React from "react";
-import {Text, View, TextInput, ImageBackground, FlatList, TouchableOpacity} from 'react-native';
+import React, {useState, useEffect} from "react";
+import {Text, View, TouchableOpacity} from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 import styles from './StyleHomeBar';
@@ -7,17 +7,22 @@ import {  getAuth, signOut } from "firebase/auth";
 
 
 export default function ProfileView() {
+    const [userLogged, setUserLogged] = useState(false)
 
-    function LogOut(){
-        const auth = getAuth();
-        signOut(auth).then(() => {
-        // Sign-out successful.
-        navigation.reset({
-            routes: [{name: 'login'}]
-          });
-        }).catch((error) => {
-        // An error happened.
-        });
+    // VER PORQUE NAO TÁ FUNCIONANDO
+    const LogOut = () => {
+        useEffect(() => {
+            const auth = getAuth();
+            signOut(auth).then(() => {
+                setUserLogged(user ? true : false);
+                navigation.reset({
+                    routes: [{name: 'login'}]
+                });
+            }).catch((error) => {
+            // An error happened.
+            });
+          }, []);
+
     }
 
     return(

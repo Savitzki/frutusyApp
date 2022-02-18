@@ -16,7 +16,7 @@ export default function RegisterView({ navigation }){
 
   const handleRegisterClick = async () => {
     if(name != '' && email != '' && password != '' && passVerifiqued != ''){
-        if(pass == passVerifiqued){
+        if(password == passVerifiqued){
 
           const auth = getAuth();
           createUserWithEmailAndPassword(auth, email, password)
@@ -24,7 +24,7 @@ export default function RegisterView({ navigation }){
               // Signed in
               const user = userCredential.user;
               navigation.reset({
-                routes:[{name: 'home'}]
+                routes:[{name: 'login'}]
               });
               // ...
             })

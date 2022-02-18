@@ -10,17 +10,7 @@ import styles from './StyleHome';
 export default function HomeView() {
 
     const Tab = createMaterialBottomTabNavigator();
-    // const [user,setUser]=useState(null);
 
-    // useEffect(()=>{
-    //     async function getUser()
-    //     {
-    //         let response=await AsyncStorage.getItem('userData');
-    //         let json=JSON.parse(response);
-    //         setUser(json.name);
-    //     }
-    //     getUser();
-    // },[]);
 
     return (      
         // Barra de navegação inferior
