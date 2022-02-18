@@ -2,11 +2,10 @@ import React, {useState, useContext} from 'react';
 import  {KeyboardAvoidingView, Platform, Text, TextInput, View, TouchableOpacity, Alert} from 'react-native';
 
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, setDoc } from "firebase/firestore";
 import { db } from '../../firebaseConection';
 
 import styles from './StyleRegister';
-
 
 export default function RegisterView({ navigation }){
   
@@ -27,7 +26,7 @@ export default function RegisterView({ navigation }){
               const user = userCredential.user;
               console.log(user);
               try {
-                const docRef = addDoc(collection(db, "users"), {
+                const docRef = setDoc(collection(db, "users"), {
                   email: email,
                   nome: name,
                 });
