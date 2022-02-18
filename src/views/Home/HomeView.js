@@ -1,16 +1,12 @@
-import React, {useState,useEffect} from 'react';
-// import AsyncStorage from '@react-native-community/async-storage';
+import React from 'react';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
-
 import {InitView, ProfileView, SolicitView} from './../index';
-
 import styles from './StyleHome';
 
 export default function HomeView() {
 
     const Tab = createMaterialBottomTabNavigator();
-
 
     return (      
         // Barra de navegação inferior

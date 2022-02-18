@@ -5,9 +5,10 @@ const styles = StyleSheet.create({
     container:{
         flex: 1,
         flexDirection: "column",
-        alignItems: 'center',
+        alignItems: 'flex-start',
         justifyContent: 'flex-start',
         backgroundColor: '#f2f2f2',
+        padding: 10,
     },
     text_view_bold:{
         fontSize: 20,
@@ -19,7 +20,8 @@ const styles = StyleSheet.create({
         fontSize: 20,
         color: '#373737',
         margin: 5,
-        fontFamily: 'Baloo-regular'
+        fontFamily: 'Baloo-regular',
+        marginLeft: 10,
     },
     text_profile:{
         fontSize: 24,
@@ -73,13 +75,14 @@ const styles = StyleSheet.create({
     section:{
         flexDirection: 'row', 
         alignItems: 'center', 
+        width: '90%',
         marginBottom: 2, 
         backgroundColor: '#f2f2f2',
-        elevation: 2,
         height: 50,
         padding: 5,
         marginHorizontal: 10,
-
+        borderBottomWidth: 1,
+        borderColor: '#ccc',
     },
 });
 export default styles;

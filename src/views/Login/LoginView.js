@@ -6,6 +6,7 @@ import {
   View,
   TouchableOpacity,
   Image,
+  Alert,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
@@ -33,8 +34,11 @@ export default function LoginView() {
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
+          Alert.alert('Dados incorretos', 'Verifique e tente de novo');
         });
-    };
+    }else{
+      Alert.alert('Algo de errado não está certo', 'Verifique e preencha todos os campos');
+    }
   }
 
   const handleRegisterClick = () => {
@@ -74,16 +78,17 @@ export default function LoginView() {
       <TouchableOpacity>
         <Text style={styles.text}>Esqueci minha senha</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={handleRegisterClick}>
-        <Text style={[styles.text, { fontFamily: "Baloo-semiBold" }]}>
-          Criar minha conta
-        </Text>
-      </TouchableOpacity>
 
       {/* Botao entrar */}
       {/* <TouchableOpacity style={[styles.button, styles.color_orange]} onPress={() => this.props.navigation.navigate('Frutusy')}> */}
       <TouchableOpacity style={styles.button} onPress={handleLoginClick}>
         <Text style={styles.text_button}>ENTRAR</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity onPress={handleRegisterClick}>
+        <Text style={[styles.text, { fontFamily: "Baloo-semiBold" }]}>
+          Não tem conta? Clique para criar
+        </Text>
       </TouchableOpacity>
     </KeyboardAvoidingView>
   );

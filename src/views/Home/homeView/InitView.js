@@ -9,7 +9,7 @@ export default function InitView( { navigation } ) {
     // Tela de inicio do app
 
     return(
-        <View style={styles.container}>
+        <View style={[styles.container, {alignItems: 'center'}]}>
 
             {/* <ImageBackground source={require('../../../assets/img/BG.png')} style={styles.imageBackground}>   */}
 
