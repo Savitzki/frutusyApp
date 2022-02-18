@@ -2,6 +2,8 @@ import React, {useState, useContext} from 'react';
 import  {KeyboardAvoidingView, Platform, Text, TextInput, View, TouchableOpacity, Alert} from 'react-native';
 
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { collection, addDoc } from "firebase/firestore";
+import { db } from '../../firebaseConection';
 
 import styles from './StyleRegister';
 
@@ -23,10 +25,20 @@ export default function RegisterView({ navigation }){
             .then((userCredential) => {
               // Signed in
               const user = userCredential.user;
-              navigation.reset({
-                routes:[{name: 'login'}]
-              });
-              // ...
+              console.log(user);
+              try {
+                const docRef = addDoc(collection(db, "users"), {
+                  email: email,
+                  nome: name,
+                });
+                console.log("Document written with ID: ", docRef.id);
+                navigation.reset({
+                  routes:[{name: 'login'}]
+                })
+              } catch (e) {
+                console.error("Error adding document: ", e);
+              };
+              
             })
             .catch((error) => {
               const errorCode = error.code;
