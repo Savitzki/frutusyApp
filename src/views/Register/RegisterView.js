@@ -2,10 +2,9 @@ import React, {useState, useContext} from 'react';
 import  {KeyboardAvoidingView, Platform, Text, TextInput, View, TouchableOpacity, Alert} from 'react-native';
 
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { collection, setDoc } from "firebase/firestore";
-import { db } from '../../firebaseConection';
-
+import { doc, addDoc, collection, setDoc } from "firebase/firestore";
 import styles from './StyleRegister';
+import db from '../../firebaseConection';
 
 export default function RegisterView({ navigation }){
   
@@ -13,39 +12,30 @@ export default function RegisterView({ navigation }){
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passVerifiqued, setPassVerifiqued] = useState('');
-  
 
   const handleRegisterClick = async () => {
     if(name != '' && email != '' && password != '' && passVerifiqued != ''){
         if(password == passVerifiqued){
-
           const auth = getAuth();
           createUserWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-              // Signed in
-              const user = userCredential.user;
-              console.log(user);
-              try {
-                const docRef = setDoc(collection(db, "users"), {
-                  email: email,
-                  nome: name,
-                });
-                console.log("Document written with ID: ", docRef.id);
-                navigation.reset({
-                  routes:[{name: 'login'}]
-                })
-              } catch (e) {
-                console.error("Error adding document: ", e);
-              };
-              
+          // adicionar o .then pra testar
+          const data = {
+            email : email,
+            nome : name
+          }
+          await addDoc(collection(db, 'users'), data)
+          .then( () => {
+            Alert.alert('sucesso', 'conta criada com sucesso');
+            navigation.reset({
+              routes:[{name: 'login'}]
             })
+          })
             .catch((error) => {
               const errorCode = error.code;
               const errorMessage = error.message;
-              // ..
-            });
+            })
         }else{
-          alert('Preencha todos os campos');
+          alert('As senhas devem ser iguais');
         }
     }else{
       alert('Preencha todos os campos');
