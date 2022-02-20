@@ -9,7 +9,7 @@ import styles from './StyleProduct';
 export default function ProductView ( { navigation } ){
 
 
-    const [checked, setChecked] = React.useState('first');
+    const [checked, setChecked] = useState('quilo');
     
         return(
             <KeyboardAvoidingView style={[styles.container, {backgroundColor: '#f2f2f2'}]}>
@@ -28,16 +28,16 @@ export default function ProductView ( { navigation } ){
                             {/* Opcao de quilo ou unidade */}
                             <View style={{flex:1, flexDirection: 'row', alignItems: 'center'}}>
                                 <RadioButton
-                                    value="first"
-                                    status={ checked === 'first' ? 'checked' : 'unchecked' }
-                                    onPress={() => setChecked('first')}
+                                    value= "unidade"
+                                    status={ checked === 'unidade' ? 'checked' : 'unchecked' }
+                                    onPress={() => setChecked('unidade')}
                                     color= '#d45959'
                                 />
                                 <Text style={styles.text_h3}>Unidade</Text>
                                 <RadioButton
-                                    value="second"
-                                    status={ checked === 'second' ? 'checked' : 'unchecked' }
-                                    onPress={() => setChecked('second')}
+                                    value="quilo"
+                                    status={ checked === 'quilo' ? 'checked' : 'unchecked' }
+                                    onPress={() => setChecked('quilo')}
                                     color= '#d45959'
                                 />
                                 <Text style={styles.text_h3}>Quilo (KG)</Text>
@@ -58,13 +58,6 @@ export default function ProductView ( { navigation } ){
 
                         </View>
 
-                        <Text style={styles.text_h2}>Observação</Text>
-                        <View style={{alignItems: 'center'}}>
-                            <TextInput style={styles.obs}
-                                multiline = {true}
-                                numberOfLines = {5}
-                            ></TextInput>
-                        </View>
                         {/* BOTAO DE ADICIONAR A CESTA */}
                         <View>
                             <TouchableOpacity style={[styles.button, {backgroundColor:'#d45959', alignSelf: 'center'}]}

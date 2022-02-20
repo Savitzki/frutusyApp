@@ -1,39 +1,51 @@
-import React, {useState, useContext} from 'react';
+import React, {useState} from 'react';
 import  {KeyboardAvoidingView, Platform, Text, TextInput, View, TouchableOpacity, Alert} from 'react-native';
 
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { doc, addDoc, collection, setDoc } from "firebase/firestore";
+import { getAuth, createUserWithEmailAndPassword,   } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore";
 import styles from './StyleRegister';
 import db from '../../firebaseConection';
 
 export default function RegisterView({ navigation }){
   
-  const [name, setName] = useState('');
+  const [firstName, setFisrtName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passVerifiqued, setPassVerifiqued] = useState('');
+  // const userUID = '';
 
-  const handleRegisterClick = async () => {
-    if(name != '' && email != '' && password != '' && passVerifiqued != ''){
+  const handleRegisterClick = () => {
+    if(firstName != '' && lastName != '' && email != '' && password != '' && passVerifiqued != ''){
         if(password == passVerifiqued){
           const auth = getAuth();
           createUserWithEmailAndPassword(auth, email, password)
-          // adicionar o .then pra testar
-          const data = {
-            email : email,
-            nome : name
-          }
-          await addDoc(collection(db, 'users'), data)
-          .then( () => {
-            Alert.alert('sucesso', 'conta criada com sucesso');
-            navigation.reset({
-              routes:[{name: 'login'}]
-            })
+          // const user = auth.currentUser;
+          .then((userCredential) => {
+                const uid = userCredential.user.uid;
+                const data = {
+                  nome : firstName,
+                  sobrenome: lastName
+                }
+                setDoc(doc(db, 'users', uid), data)
+                  .then( () => {
+                    // Alert.alert('sucesso', 'conta criada com sucesso');
+                    navigation.reset({
+                      routes:[{name: 'login'}]
+                    })
+                  })
+                    .catch((error) => {
+                      // Alert.alert('Erro', 'Deu erro em add o doc')
+                      const errorCode = error.code;
+                      const errorMessage = error.message;
+                    })
           })
-            .catch((error) => {
-              const errorCode = error.code;
-              const errorMessage = error.message;
-            })
+          .catch((error) => {
+            Alert.alert('Erro', 'erro ao criar conta')
+            const errorCode = error.code;
+            const errorMessage = error.message;
+          })     
+          
         }else{
           alert('As senhas devem ser iguais');
         }
@@ -56,7 +68,8 @@ export default function RegisterView({ navigation }){
                 <Text style={styles.text}>Insira suas informações para o cadastro</Text>
 
                 {/* Inputs */}
-                    <TextInput placeholder='Nome'  value={name} style={[styles.text_input]} onChangeText={text => setName(text)}></TextInput>
+                    <TextInput placeholder='Nome'  value={firstName} style={[styles.text_input]} onChangeText={text => setFisrtName(text)}></TextInput>
+                    <TextInput placeholder='Sobrenome'  value={lastName} style={[styles.text_input]} onChangeText={text => setLastName(text)}></TextInput>
                     <TextInput placeholder='E-mail' value={email} style={styles.text_input} onChangeText={text => setEmail(text)}></TextInput>
                     <TextInput placeholder='Senha' value={password} secureTextEntry={true} style={styles.text_input} onChangeText={text => setPassword(text)}></TextInput>
                     <TextInput placeholder='Repita sua senha' value={passVerifiqued} secureTextEntry={true} style={styles.text_input} onChangeText={text => setPassVerifiqued(text)}></TextInput>

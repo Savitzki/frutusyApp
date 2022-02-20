@@ -1,38 +1,71 @@
-import React from 'react';
-import {Text, View, ImageBackground, FlatList, Image, TouchableOpacity} from 'react-native';
+import React, { useEffect, useState } from 'react';
+import {Text, View, FlatList, TouchableOpacity} from 'react-native';
 import { Searchbar, FAB } from 'react-native-paper';
+
+import db from '../../firebaseConection';
+import { collection, doc, getDocs, query, where } from "firebase/firestore";
 
 import styles from './StyleProduct';
 
-const DATA = [
-    {
-      id: '1',
-      title: 'Maçã gala',
-      price: '3.00',
-    },
-    {
-      id: '2',
-      title: 'Pera',
-      price: '2.87',
-    },
-    {
-      id: '3',
-      title: 'Laranja pêra',
-      price: '1.99',
-    },
-  ];
+export default function ListProductView( { navigation, route } ){
 
+  const [data, setData] =  useState([]);
+  const [typePrd, setTypePrd] = useState("");
 
-export default function ListProductView( { navigation } ){
+  const getProducts = async () => {
+    const productsRef = collection(db, "products");
+    const q = query(productsRef, where("type", "==", typePrd));
+  
+    // const querySnapshot = getDocs(q);
+    await getDocs(q)
+    .then((querySnapshot) => {
+      let dataProducts = [];
+      querySnapshot.forEach((doc) => {
+        const prod = {
+          id: doc.id,
+          nameProduct: doc.data().name,
+          price: doc.data().price,
+          measurementProd: doc.data().measurementUnit,
+        }
+        dataProducts.push(prod);
+        // console.log(doc.id, " => ", doc.data());
+      });
+      setData(dataProducts);
+    })
+    .catch((error) => {
+      Alert.alert('Erro', 'erro ao criar conta')
+      const errorCode = error.code;
+      const errorMessage = error.message;
+    });
+  }
+
+  useEffect( () => {
+    const typeProduct = route.params.name;
+
+    if(typeProduct === "Frutas"){
+      setTypePrd("fruta");
+    }else if(typeProduct === "Verduras"){
+      setTypePrd("verdura");
+    }else{
+      setTypePrd("legume");
+    }
+
+    console.log(typePrd);
+      getProducts();
+      return () => {
+        setTypePrd({}); // This worked for me
+      };
+
+  }, [typePrd]);
 
   const [searchQuery, setSearchQuery] = React.useState('');
 
   const onChangeSearch = query => setSearchQuery(query);
 
-    const Item = ({ title, price }) => (
+    const Item = ({ nameProduct, price, measurementProd }) => (
         <View style={styles.item}>
-          <Text style={styles.text_h2}>{title}</Text>
-          <Text style={styles.text_h3}>R$ {price} kg</Text>
+          <Text style={styles.text_h2}>{nameProduct}</Text>
+          <Text style={styles.text_h3}>R$ {price} / {measurementProd}</Text>
         </View>
       );
 
@@ -40,14 +73,13 @@ export default function ListProductView( { navigation } ){
         <View style={{alignItems: 'center'}}>
           <TouchableOpacity style={styles.button_item}
             onPress={() => navigation.navigate('product')}>
-            <Item title={item.title} price={item.price} />
+            <Item nameProduct={item.nameProduct} price={item.price} measurementProd={item.measurementProd}/>
           </TouchableOpacity>
         </View>
       );
 
     return(
         <View style={styles.container}>
-            {/* <ImageBackground source={require('../../assets/img/BG.png')} style={styles.imageBackground}> */}
             <Searchbar
               placeholder="Pesquisar"
               onChangeText={onChangeSearch}
@@ -57,7 +89,7 @@ export default function ListProductView( { navigation } ){
             />
 
             <FlatList style={styles.flatlist}
-                    data={DATA}
+                    data={data}
                     renderItem={renderItem}
                     keyExtractor={item => item.id}
             />

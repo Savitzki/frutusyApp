@@ -12,34 +12,18 @@ export default function InitView( { navigation } ) {
     // Tela de inicio do app
     const handleClickFruit = () => {
         setFrutas(true);
-        // setColorOption('#d45959');
-
-        // Chamada de banco de dados
-
-        // Navegacao de tela
-        // console.log(colorOption);
         navigation.navigate('listProduct', { 
             name: 'Frutas'}, 
         );
     }
     const handleClickGreens = () => {
         setVerduras(true);
-        // setColorOption('#9fd76d');
-
-        // Chamada de banco de dados
-
-        // Navegacao de tela
         navigation.navigate('listProduct', { 
             name: 'Verduras'}, 
         );
     }
     const handleClickVegetable = () => {
         setLegumes(true);
-        // setColorOption('#FF941D');
-
-        // Chamada de banco de dados
-        
-        // Navegacao de tela
         navigation.navigate('listProduct', {
             name: 'Legumes',
         });

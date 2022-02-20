@@ -1,6 +1,5 @@
 import React  from 'react';
 import { StyleSheet } from "react-native";  
-import { useRoute } from '@react-navigation/native';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -19,14 +18,10 @@ import * as Font from 'expo-font';
 
 const Stack = createStackNavigator();
 
-
 export default class App extends React.Component{
   state = {
     fontsLoaded: false,
   };
-
-  
-
    componentDidMount() {
     this.loadFonts();
   }
@@ -64,7 +59,7 @@ export default class App extends React.Component{
     }
     return(
         <NavigationContainer>
-          <Stack.Navigator initialRouteName='login'>
+          <Stack.Navigator initialRouteName='home'>
 
         {/* Tela de login - 1 */}
             <Stack.Screen name='preload' component={Preload} options={{headerShown: false}}/>
