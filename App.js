@@ -58,6 +58,7 @@ export default class App extends React.Component{
       return <AppLoading />;
     }
     return(
+      <CartProvider>
         <NavigationContainer>
           <Stack.Navigator initialRouteName='home'>
 
@@ -112,6 +113,8 @@ export default class App extends React.Component{
             }} />
           </Stack.Navigator>
         </NavigationContainer>
+      </CartProvider>
+        
     );
   }
 }

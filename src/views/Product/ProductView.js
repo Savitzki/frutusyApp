@@ -7,20 +7,21 @@ import db from '../../firebaseConection';
 import { doc, getDoc} from "firebase/firestore";
 
 import styles from './StyleProduct';
+import { useCart } from "../../contexts/CartContext";
 
 export default function ProductView ( { navigation, route } ){
 
     const aux = route.params.idProductSelected;
-    const [quant, setQuant] = useState(0);
+    const [quant, setQuant] = useState(1);
     const [dataProduct, setDataProduct] =  useState({});
     const [idProd, setIdProd] = useState("");
+    const { addCart } =  useCart();
 
     const getProduct = async () => {
         // console.log('dentro da function, idProd:', idProd);
         const productsRef = doc(db, "products", idProd);
         const docProduct = await getDoc(productsRef);
         
-        // verificar tratamento de erro e pq ele faz a consulta duas vzs
         if(docProduct.exists()){
             // console.log("Document data:", docProduct.data());
             const prod = {
@@ -38,11 +39,9 @@ export default function ProductView ( { navigation, route } ){
     useEffect( () => {
         console.log(aux);
         setIdProd(aux);
-        getProduct();
-
-        return () => {
-          setIdProd("");
-        };
+        if(idProd != ""){
+            getProduct();
+        }
 
     }, [idProd]);
 
@@ -54,14 +53,14 @@ return(
         </View>
         <View style={{flex:1, padding: 10}}>
 
-                <Text style={styles.tittle_item}>{dataProduct.nameProduct}</Text>
-                <Text style={styles.description}>{dataProduct.descriptionProd}</Text>
+            <Text style={styles.tittle_item}>{dataProduct.nameProduct}</Text>
+            <Text style={styles.description}>{dataProduct.descriptionProd}</Text>
 
-            <View style={{flexDirection: 'row', alignItems: 'center', paddingBottom: 20}}>
-                <Text style={styles.text_h2}>Preço por: </Text>
+            <View style={{flexDirection: 'row', alignItems: 'center', paddingBottom: 15}}>
+                <Text style={styles.text_h2}>R$ {dataProduct.price.to} / </Text>
                 <Text style={styles.text}>{dataProduct.measurementProd}</Text>
-
             </View>
+
 
             <View style={{flexDirection: 'row', alignItems: 'center', paddingBottom: 15, justifyContent: 'space-between'}}>
                 <View style={{flexDirection: 'row', alignItems: 'center'}}>
@@ -82,14 +81,11 @@ return(
                 {/* BOTAO DE ADICIONAR A CESTA */}
                 <View>
                     <TouchableOpacity style={[styles.button, {backgroundColor:'#FFE656', alignSelf: 'center'}]}
-                        onPress={false}>
+                        onPress={() => addCart(dataProduct.nameProduct)}>
                         <Text style={{fontFamily: 'Baloo-medium', fontSize: 22, color: '#373737'}}>Adicionar a cesta</Text>
                     </TouchableOpacity>
                 </View>
             </View>
-
-
-
                 <FAB
                     style={styles.fab}
                     icon="basket"

@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Baloo-regular',
         fontSize: 20,
         color: '#373737',
-        marginLeft: 10,
+        marginLeft: 5,
         backgroundColor: "#FFE656",
         padding: 5,
         borderRadius: 5,

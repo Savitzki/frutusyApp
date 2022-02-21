@@ -77,7 +77,7 @@ export default function ListProductView( { navigation, route } ){
         <View style={{alignItems: 'center'}}>
           <TouchableOpacity style={styles.button_item}
             onPress={() => handleProductClick(item.id)}>
-            <Item nameProduct={item.nameProduct} price={item.price} measurementProd={item.measurementProd}/>
+            <Item nameProduct={item.nameProduct} price={item.price.toFixed(2)} measurementProd={item.measurementProd}/>
           </TouchableOpacity>
         </View>
       );
