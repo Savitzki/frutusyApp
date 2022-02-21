@@ -25,6 +25,8 @@ export default function LoginView() {
       signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           // Signed in
+
+          // passar nome do usuario autenticado para a tela Home/Profile.
           const user = userCredential.user;
           navigation.reset({
             routes: [{name: 'home'}]

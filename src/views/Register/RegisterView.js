@@ -16,12 +16,17 @@ export default function RegisterView({ navigation }){
   // const userUID = '';
 
   const handleRegisterClick = () => {
+    // Verificando se todos os campos foram preenchidos
     if(firstName != '' && lastName != '' && email != '' && password != '' && passVerifiqued != ''){
+
+      // verificando se o campo das senhas são iguais
         if(password == passVerifiqued){
           const auth = getAuth();
+          // criando usuario de autenticação para usar no login depois
           createUserWithEmailAndPassword(auth, email, password)
           // const user = auth.currentUser;
           .then((userCredential) => {
+            // salvando nome e sobrenome da criatura
                 const uid = userCredential.user.uid;
                 const data = {
                   nome : firstName,

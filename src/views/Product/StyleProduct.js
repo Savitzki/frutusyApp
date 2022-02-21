@@ -6,14 +6,7 @@ const styles = StyleSheet.create({
         flexDirection: "column",
         alignItems: 'center',
         justifyContent: 'flex-start',
-        padding: 10,
     },
-    // imageBackground: {
-    //     flex: 1,
-    //     width: "100%",
-    //     resizeMode: "cover",
-    //     justifyContent: "flex-start",
-    //   },
       text_h2:{
         fontSize: 20,
         color: '#373737',
@@ -107,7 +100,17 @@ const styles = StyleSheet.create({
     },
     flatlist:{
         width: '90%',
+    },
+    text: {
+        fontFamily: 'Baloo-regular',
+        fontSize: 20,
+        color: '#373737',
+        marginLeft: 10,
+        backgroundColor: "#FFE656",
+        padding: 5,
+        borderRadius: 5,
     }
+
 });
 
 export default styles;

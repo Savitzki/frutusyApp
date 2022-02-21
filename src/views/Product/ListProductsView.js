@@ -11,6 +11,7 @@ export default function ListProductView( { navigation, route } ){
 
   const [data, setData] =  useState([]);
   const [typePrd, setTypePrd] = useState("");
+  // adicionar um state param para controlar o botao do carinho
 
   const getProducts = async () => {
     const productsRef = collection(db, "products");
@@ -55,14 +56,17 @@ export default function ListProductView( { navigation, route } ){
       return () => {
         setTypePrd({}); // This worked for me
       };
-
   }, [typePrd]);
+
+  function handleProductClick(idItem) {
+    navigation.navigate('product', {idProductSelected: idItem});
+  }
 
   const [searchQuery, setSearchQuery] = React.useState('');
 
   const onChangeSearch = query => setSearchQuery(query);
 
-    const Item = ({ nameProduct, price, measurementProd }) => (
+    const Item = ({nameProduct, price, measurementProd }) => (
         <View style={styles.item}>
           <Text style={styles.text_h2}>{nameProduct}</Text>
           <Text style={styles.text_h3}>R$ {price} / {measurementProd}</Text>
@@ -72,7 +76,7 @@ export default function ListProductView( { navigation, route } ){
       const renderItem = ({ item }) => (
         <View style={{alignItems: 'center'}}>
           <TouchableOpacity style={styles.button_item}
-            onPress={() => navigation.navigate('product')}>
+            onPress={() => handleProductClick(item.id)}>
             <Item nameProduct={item.nameProduct} price={item.price} measurementProd={item.measurementProd}/>
           </TouchableOpacity>
         </View>

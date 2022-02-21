@@ -93,7 +93,10 @@ export default class App extends React.Component{
 
             <Stack.Screen name='product' component={ProductView}
               options={{
-                title: 'Item'
+                headerTintColor: '#373737', headerStyle: styles.headerView, 
+                headerTitleStyle: { fontFamily: 'Baloo-semiBold', fontSize: 25}, 
+                headerTitleAlign: 'center',
+                title: 'Item',
               }}
             />
 
