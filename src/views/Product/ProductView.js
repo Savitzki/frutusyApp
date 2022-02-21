@@ -20,6 +20,7 @@ export default function ProductView ( { navigation, route } ){
         const productsRef = doc(db, "products", idProd);
         const docProduct = await getDoc(productsRef);
 
+        // verificar tratamento de erro e pq ele faz a consulta duas vzs
         if(docProduct.exists()){
             console.log("Document data:", docProduct.data());
             // let dataProducts = [];
@@ -39,15 +40,14 @@ export default function ProductView ( { navigation, route } ){
         setIdProd(aux);
         getProduct();
 
-    }, [idProd]);
+    }, []);
 
     
 return(
     <KeyboardAvoidingView style={[styles.container, {backgroundColor: '#f2f2f2'}]}>
-        <View style={{flex:1, backgroundColor: '#FFE656', width: '100%', padding: 5, marginBottom: 5}}>
-            <Text>Aqui vai a img</Text>
+        <View style={{flex:1, backgroundColor: '#f2f2f2', width: '100%', padding: 5, marginBottom: 5, borderBottomWidth: 10, borderColor: "#FFE656"}}>
+            <Image style={{width: 400, height: 400, alignSelf: 'center'}} source={{uri:'https://imagensemoldes.com.br/wp-content/uploads/2020/05/Figura-Abacaxi-PNG.png'}}></Image>
         </View>
-            {/* <Image source={require('../../assets/img/BG.png')}></Image> */}
         <View style={{flex:1, padding: 10}}>
 
                 <Text style={styles.tittle_item}>{dataProduct.nameProduct}</Text>
@@ -59,22 +59,19 @@ return(
 
             </View>
 
-                
-
                 <View style={{flexDirection: 'row', paddingBottom: 10, alignItems: 'center', justifyContent: 'center'}}>
+                    {/* BOTAO DE REMOVER ITENS*/}
+                    <TouchableOpacity >
+                        <Ionicons name="remove-circle" size={28} color={'#FFE656'}></Ionicons>
+                    </TouchableOpacity>
 
-                {/* BOTAO DE REMOVER ITENS*/}
-                <TouchableOpacity >
-                    <Ionicons name="remove-circle" size={24} color={'#d45959'}></Ionicons>
-                </TouchableOpacity>
+                    {/* INPUT DE QUANTIDADE DE ITENS */}
+                    <TextInput style={styles.input}>{quant}</TextInput>
 
-                <TextInput style={styles.input}></TextInput>
-
-                {/* BOTAO DE ADICIONAR ITENS */}
-                <TouchableOpacity>
-                    <Ionicons name="add-circle" size={24} color={'#d45959'}></Ionicons>
-                </TouchableOpacity>
-
+                    {/* BOTAO DE ADICIONAR ITENS */}
+                    <TouchableOpacity>
+                        <Ionicons name="add-circle" size={28} color={'#FFE656'}></Ionicons>
+                    </TouchableOpacity>
                 </View>
 
                 {/* BOTAO DE ADICIONAR A CESTA */}
