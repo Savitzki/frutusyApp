@@ -16,24 +16,21 @@ export default function ProductView ( { navigation, route } ){
     const [idProd, setIdProd] = useState("");
 
     const getProduct = async () => {
-        console.log('dentro da function, idProd:', idProd);
+        // console.log('dentro da function, idProd:', idProd);
         const productsRef = doc(db, "products", idProd);
         const docProduct = await getDoc(productsRef);
         
-
         // verificar tratamento de erro e pq ele faz a consulta duas vzs
         if(docProduct.exists()){
-            console.log("Document data:", docProduct.data());
-            // let dataProducts = [];
+            // console.log("Document data:", docProduct.data());
             const prod = {
-                      id: docProduct.data().id,
-                      nameProduct: docProduct.data().name,
-                      descriptionProd: docProduct.data().description,
-                      price: docProduct.data().price,
-                      measurementProd: docProduct.data().measurementUnit,
-                      imageProd: docProduct.data().URLimage,
+                        id: docProduct.data().id,
+                        nameProduct: docProduct.data().name,
+                        descriptionProd: docProduct.data().description,
+                        price: docProduct.data().price,
+                        measurementProd: docProduct.data().measurementUnit,
+                        imageProd: docProduct.data().URLimage,
                     }
-            // dataProducts.push(prod);
             setDataProduct(prod);
         }
       }
@@ -52,8 +49,8 @@ export default function ProductView ( { navigation, route } ){
     
 return(
     <KeyboardAvoidingView style={[styles.container, {backgroundColor: '#f2f2f2'}]}>
-        <View style={{flex:1, backgroundColor: '#f2f2f2', width: '100%', padding: 5, marginBottom: 5, borderBottomWidth: 10, borderColor: "#FFE656"}}>
-            <Image style={{width: 350, height: 350, alignSelf: 'center'}} source={{uri: dataProduct.imageProd}}></Image>
+        <View style={styles.headerProduct}>
+            <Image style={{width: '100%', height: '100%', alignSelf: 'center'}} source={{uri: dataProduct.imageProd}}></Image>
         </View>
         <View style={{flex:1, padding: 10}}>
 

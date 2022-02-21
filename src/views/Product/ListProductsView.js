@@ -17,7 +17,7 @@ export default function ListProductView( { navigation, route } ){
     const productsRef = collection(db, "products");
     const q = query(productsRef, where("type", "==", typePrd));
   
-    // const querySnapshot = getDocs(q);
+    // Busca da lista de documentos da colletion products
     await getDocs(q)
     .then((querySnapshot) => {
       let dataProducts = [];
@@ -29,8 +29,8 @@ export default function ListProductView( { navigation, route } ){
           measurementProd: doc.data().measurementUnit,
         }
         dataProducts.push(prod);
-        // console.log(doc.id, " => ", doc.data());
       });
+      // Adicionando array de docs na variavel de estado
       setData(dataProducts);
     })
     .catch((error) => {

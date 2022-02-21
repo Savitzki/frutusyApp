@@ -109,7 +109,16 @@ const styles = StyleSheet.create({
         backgroundColor: "#FFE656",
         padding: 5,
         borderRadius: 5,
-    }
+    },
+    headerProduct: {
+        flex:1, 
+        backgroundColor: '#f2f2f2', 
+        width: '100%', 
+        marginBottom: 5, 
+        borderWidth: 10,
+        borderRadius: 20, 
+        borderColor: "#FFE656",
+    },
 
 });
 
