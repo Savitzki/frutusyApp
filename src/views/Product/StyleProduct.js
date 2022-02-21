@@ -61,9 +61,9 @@ const styles = StyleSheet.create({
     },
     button:{
         margin: 5,
-        // width: 350,
-        width: '90%',
-        height: 70,
+        width: 250,
+        // width: '90%',
+        height: 60,
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 10,

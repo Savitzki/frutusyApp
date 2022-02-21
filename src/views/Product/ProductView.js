@@ -16,9 +16,10 @@ export default function ProductView ( { navigation, route } ){
     const [idProd, setIdProd] = useState("");
 
     const getProduct = async () => {
-        // console.log('dentro da function, idProd:', idProd);
+        console.log('dentro da function, idProd:', idProd);
         const productsRef = doc(db, "products", idProd);
         const docProduct = await getDoc(productsRef);
+        
 
         // verificar tratamento de erro e pq ele faz a consulta duas vzs
         if(docProduct.exists()){
@@ -30,6 +31,7 @@ export default function ProductView ( { navigation, route } ){
                       descriptionProd: docProduct.data().description,
                       price: docProduct.data().price,
                       measurementProd: docProduct.data().measurementUnit,
+                      imageProd: docProduct.data().URLimage,
                     }
             // dataProducts.push(prod);
             setDataProduct(prod);
@@ -37,29 +39,35 @@ export default function ProductView ( { navigation, route } ){
       }
 
     useEffect( () => {
+        console.log(aux);
         setIdProd(aux);
         getProduct();
 
-    }, []);
+        return () => {
+          setIdProd("");
+        };
+
+    }, [idProd]);
 
     
 return(
     <KeyboardAvoidingView style={[styles.container, {backgroundColor: '#f2f2f2'}]}>
         <View style={{flex:1, backgroundColor: '#f2f2f2', width: '100%', padding: 5, marginBottom: 5, borderBottomWidth: 10, borderColor: "#FFE656"}}>
-            <Image style={{width: 400, height: 400, alignSelf: 'center'}} source={{uri:'https://imagensemoldes.com.br/wp-content/uploads/2020/05/Figura-Abacaxi-PNG.png'}}></Image>
+            <Image style={{width: 350, height: 350, alignSelf: 'center'}} source={{uri: dataProduct.imageProd}}></Image>
         </View>
         <View style={{flex:1, padding: 10}}>
 
                 <Text style={styles.tittle_item}>{dataProduct.nameProduct}</Text>
                 <Text style={styles.description}>{dataProduct.descriptionProd}</Text>
 
-            <View style={{flexDirection: 'row', alignItems: 'center'}}>
+            <View style={{flexDirection: 'row', alignItems: 'center', paddingBottom: 20}}>
                 <Text style={styles.text_h2}>Preço por: </Text>
                 <Text style={styles.text}>{dataProduct.measurementProd}</Text>
 
             </View>
 
-                <View style={{flexDirection: 'row', paddingBottom: 10, alignItems: 'center', justifyContent: 'center'}}>
+            <View style={{flexDirection: 'row', alignItems: 'center', paddingBottom: 15, justifyContent: 'space-between'}}>
+                <View style={{flexDirection: 'row', alignItems: 'center'}}>
                     {/* BOTAO DE REMOVER ITENS*/}
                     <TouchableOpacity >
                         <Ionicons name="remove-circle" size={28} color={'#FFE656'}></Ionicons>
@@ -72,15 +80,18 @@ return(
                     <TouchableOpacity>
                         <Ionicons name="add-circle" size={28} color={'#FFE656'}></Ionicons>
                     </TouchableOpacity>
-                </View>
 
+                </View>
                 {/* BOTAO DE ADICIONAR A CESTA */}
                 <View>
                     <TouchableOpacity style={[styles.button, {backgroundColor:'#FFE656', alignSelf: 'center'}]}
                         onPress={false}>
-                        <Text style={{fontFamily: 'Baloo-medium', fontSize: 25, color: '#373737'}}>Adicionar a cesta</Text>
+                        <Text style={{fontFamily: 'Baloo-medium', fontSize: 22, color: '#373737'}}>Adicionar a cesta</Text>
                     </TouchableOpacity>
                 </View>
+            </View>
+
+
 
                 <FAB
                     style={styles.fab}
