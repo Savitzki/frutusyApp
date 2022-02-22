@@ -1,5 +1,6 @@
 import React  from 'react';
 import { StyleSheet } from "react-native";  
+import { Ionicons } from '@expo/vector-icons';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -109,7 +110,7 @@ export default class App extends React.Component{
                   headerTitleStyle: { fontFamily: 'Baloo-semiBold', fontSize: 25}, 
                   headerTitleAlign: 'center',
                   headerLeft: false,
-                  title: 'Frutusy'
+                  title: 'Frutusy',
             }} />
           </Stack.Navigator>
         </NavigationContainer>

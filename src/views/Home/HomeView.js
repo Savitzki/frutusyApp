@@ -3,6 +3,7 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 import { Ionicons } from '@expo/vector-icons';
 import {InitView, ProfileView, SolicitView} from './../index';
 import styles from './StyleHome';
+import CartResume from '../Cart/CartResume';
 
 export default function HomeView() {
 
@@ -17,7 +18,6 @@ export default function HomeView() {
                 labeled='true'
                 
                 barStyle={styles.tab_bar}
-            
                
         >
             <Tab.Screen

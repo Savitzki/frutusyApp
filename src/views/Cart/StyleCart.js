@@ -1,5 +1,6 @@
 // pagina de estilo da screen CartResume
 import { StyleSheet } from "react-native";  
+import { backgroundColor } from "react-native/Libraries/Components/View/ReactNativeStyleAttributes";
 
 const styles = StyleSheet.create({
     container:{
@@ -8,7 +9,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: '#F2F2F2',
-        padding: 10,
     },
     icon:{
         width: 220,
@@ -37,9 +37,18 @@ const styles = StyleSheet.create({
         margin:10, 
         textAlign: "right",
     },
+    flatlist:{
+        width: '90%',
+    },
+    text_h2:{
+        fontSize: 22,
+        color: '#373737',
+        margin: 5,
+        fontFamily: 'Baloo-semiBold',
+    },
     button:{
         margin: 5,
-        width: '90%',
+        width: '100%',
         height: 60,
         alignItems: 'center',
         justifyContent: 'center',
@@ -50,7 +59,8 @@ const styles = StyleSheet.create({
     view_btn:{
         flexDirection: 'row', 
         alignItems: 'center', 
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        alignItems: 'center'
     },
     text_button:{
         fontSize: 20,
@@ -62,7 +72,11 @@ const styles = StyleSheet.create({
         fontFamily: 'Baloo-bold',
         fontSize: 22,
         
-    }
+    },
+    item: {
+        marginHorizontal: 5,
+        alignItems: 'center',
+    },
 });
 
 export default styles;

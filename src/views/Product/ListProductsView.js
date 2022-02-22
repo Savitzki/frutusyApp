@@ -97,16 +97,6 @@ export default function ListProductView( { navigation, route } ){
                     renderItem={renderItem}
                     keyExtractor={item => item.id}
             />
-                <FAB
-                  style={styles.fab}
-                  icon="basket"
-                  color= '#373737'
-                  onPress={() => navigation.navigate('cartResume')}
-                />
-            {/* </ImageBackground> */}
         </View>
-
-
-
     );
 }

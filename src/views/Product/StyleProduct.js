@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
     },
       text_h2:{
-        fontSize: 20,
+        fontSize: 22,
         color: '#373737',
         margin: 5,
         fontFamily: 'Baloo-semiBold',
@@ -36,12 +36,14 @@ const styles = StyleSheet.create({
     tittle_item:{
         fontFamily: 'Baloo-semiBold', 
         fontSize: 30, 
-        color: '#373737'
+        color: '#373737',
+        marginHorizontal: 15,
     },
     description:{
         fontFamily: 'Baloo-regular',
         fontSize: 15,
         marginBottom: 15,
+        marginHorizontal: 15,
     },
     bt_add_product:{
         borderBottomEndRadius: 5, 
@@ -63,6 +65,16 @@ const styles = StyleSheet.create({
         margin: 5,
         width: 250,
         // width: '90%',
+        height: 60,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 10,
+        elevation: 3,
+    },
+    button_cart:{
+        margin: 5,
+        // width: 250,
+        width: '90%',
         height: 60,
         alignItems: 'center',
         justifyContent: 'center',
@@ -115,8 +127,11 @@ const styles = StyleSheet.create({
         backgroundColor: '#f2f2f2', 
         width: '100%', 
         marginBottom: 5, 
-        borderWidth: 10,
-        borderRadius: 20, 
+        borderLeftWidth: 10,
+        borderRightWidth: 10,
+        borderBottomWidth: 10,
+        borderBottomLeftRadius: 20,
+        borderBottomRightRadius: 20,
         borderColor: "#FFE656",
     },
 
