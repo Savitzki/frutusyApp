@@ -14,6 +14,10 @@ const styles = StyleSheet.create({
         width: 220,
         height: 220,
     },
+    text:{
+        fontFamily: 'Baloo-regular',
+        fontSize: 19,
+    },
     text_view:{
         fontSize: 20,
         color: '#373737',

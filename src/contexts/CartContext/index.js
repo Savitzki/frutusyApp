@@ -11,7 +11,7 @@ export default CartProvider = ({ children }) => {
 
     useEffect( () => {
         let value = 0
-        cart.map((item) => {
+        cart.map((item, index) => {
             value = value + item.price
 
         })
@@ -27,6 +27,7 @@ export default CartProvider = ({ children }) => {
         Alert.alert('Sucesso', 'Seu produto foi adicionado ao carrinho');
     }
 
+    // Funcao de remover itens do carrinho
     function removeCart(index){
         let newCart = cart.filter((item, i) => i !== index)
 
