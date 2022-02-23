@@ -46,7 +46,7 @@ export default function InitView( { navigation } ) {
                             onPress={ handleClickFruit }>
                             <View style={[styles.button_set]} >
                                 <Image style={[styles.img_button]} source={require('../../../assets/img/melancia-96.png')} />
-                                <Text style={styles.text_view_bold}>Frutas</Text>
+                                <Text style={styles.text_view_bold}>FRUTAS</Text>
                             </View>
                         </TouchableOpacity>
 
@@ -56,8 +56,8 @@ export default function InitView( { navigation } ) {
                             <View style={[styles.button_set]} >
                                 <Image style={[styles.img_button]} source={require('../../../assets/img/salada-96.png')} />
                                 <View style={{alignItems: 'center'}}>
-                                    <Text style={styles.text_view_bold}>Verduras e</Text>
-                                    <Text style={styles.text_view}>temperos</Text>
+                                    <Text style={styles.text_view_bold}>VERDURAS</Text>
+                                    <Text style={styles.text_view}>e temperos</Text>
                                 </View>
                             </View>
                         </TouchableOpacity>
@@ -67,7 +67,7 @@ export default function InitView( { navigation } ) {
                             onPress={ handleClickVegetable }>
                             <View style={[styles.button_set]} >
                                 <Image style={[styles.img_button,]} source={require('../../../assets/img/batata-96.png')} />
-                                <Text style={styles.text_view_bold}>Legumes</Text>
+                                <Text style={styles.text_view_bold}>LEGUMES</Text>
                             </View>
                         </TouchableOpacity>
                         </View>

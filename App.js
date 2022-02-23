@@ -61,7 +61,7 @@ export default class App extends React.Component{
     return(
       <CartProvider>
         <NavigationContainer>
-          <Stack.Navigator initialRouteName='home'>
+          <Stack.Navigator initialRouteName='preload'>
 
         {/* Tela de login - 1 */}
             <Stack.Screen name='preload' component={Preload} options={{headerShown: false}}/>
