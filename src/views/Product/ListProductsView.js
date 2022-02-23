@@ -51,7 +51,7 @@ export default function ListProductView( { navigation, route } ){
       setTypePrd("legume");
     }
 
-    console.log(typePrd);
+    // console.log(typePrd);
       getProducts();
       return () => {
         setTypePrd({}); // This worked for me

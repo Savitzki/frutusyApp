@@ -32,7 +32,7 @@ export default function PaymentView( { navigation, route}){
     useEffect( () => {
         const { address } = route.params;
         setMyAddress({address})
-        console.log(myAddress)
+        // console.log(myAddress)
     }, [])
 
     return(

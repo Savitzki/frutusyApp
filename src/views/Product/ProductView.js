@@ -37,7 +37,7 @@ export default function ProductView ( { navigation, route } ){
       }
 
     useEffect( () => {
-        console.log(aux);
+        // console.log(aux);
         setIdProd(aux);
         if(idProd != ""){
             getProduct();
@@ -63,7 +63,7 @@ return(
                     <Text style={styles.text}>{dataProduct.measurementProd}</Text>
                 </View>
 
-
+                {/* ESSE TRECHO DE CODIGO NAO FAZ NADA (TEORIA: REGULAR A QUANTIDADE DE ITENS PARA A CESTA) */}
                 <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end'}}>
                     {/* BOTAO DE REMOVER ITENS*/}
                     <TouchableOpacity >
@@ -76,6 +76,7 @@ return(
                         <Ionicons name="add-circle" size={28} color={'#FFE656'}></Ionicons>
                     </TouchableOpacity>
                 </View>
+
             </View>
                 {/* BOTAO DE ADICIONAR A CESTA */}
                 <View>
@@ -85,7 +86,7 @@ return(
                     </TouchableOpacity>
                 </View>
                 <View>
-                    <TouchableOpacity style={[styles.button_cart, {backgroundColor:'#FFE656', alignSelf: 'center'}]}
+                    <TouchableOpacity style={[styles.button_cart, {backgroundColor:'#FFE656', alignSelf: 'center'}]} 
                         onPress={() => navigation.navigate('cartResume')}>
                         <Text style={{fontFamily: 'Baloo-medium', fontSize: 22, color: '#373737'}}>Ver cesta</Text>
                     </TouchableOpacity>

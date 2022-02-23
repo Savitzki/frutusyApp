@@ -1,8 +1,8 @@
 import React  from 'react';
-import { StyleSheet } from "react-native";  
+import { StyleSheet, TouchableOpacity, Text } from "react-native";  
 import { Ionicons } from '@expo/vector-icons';
 
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Preload from './src/views/Preload/Preload';
 import LoginView from './src/views/Login/LoginView';
@@ -17,11 +17,28 @@ import PaymentMethod from './src/views/Payment/PaymentMethod';
 
 import AppLoading from 'expo-app-loading';
 import * as Font from 'expo-font';
+import { useCart } from "./src/contexts/CartContext";
 // import firebase from './src/firebaseConection';
 
 const Stack = createStackNavigator();
 
+const buttonCart = () => {
+  const navigation = useNavigation();
+  const { cart } =  useCart(); 
+  console.log(cart)
+  if(cart.length !== 0){
+    return(
+      <TouchableOpacity style={{marginRight: 20, alignItems: 'center', justifyContent: 'center'}} onPress={() => navigation.navigate('cartResume')}>
+        <Ionicons name="basket-outline" size={24} color="#373737" />
+        <Text style={{fontFamily: 'Baloo-bold', fontSize: 16, color: '#373737'}}> itens</Text>
+      </TouchableOpacity>
+    )
+  }
+}
+
 export default class App extends React.Component{
+
+  
   state = {
     fontsLoaded: false,
   };
@@ -56,7 +73,7 @@ export default class App extends React.Component{
     this.setState({ fontsLoaded: true });
   }
 
-  render(){
+  render( ){
     if (!this.state.fontsLoaded) {
       return <AppLoading />;
     }
@@ -81,11 +98,12 @@ export default class App extends React.Component{
                 title: route.params.name,
             })}/>
 
-            <Stack.Screen name='cartResume' component={CartResume} 
+            <Stack.Screen name='cartResume' component={CartResume} navigation={this.props.navigation}
               options={{ headerTintColor: '#373737', headerStyle: styles.headerView, 
               headerTitleStyle: { fontFamily: 'Baloo-semiBold', fontSize: 25}, 
               headerTitleAlign: 'center',
-              title: 'Cesta'
+              title: 'Cesta',
+              
             }}/>
 
             <Stack.Screen name='payment' component={PaymentView} initialParams={{ address: {} }}
@@ -126,6 +144,7 @@ export default class App extends React.Component{
                   headerTitleAlign: 'center',
                   headerLeft: false,
                   title: 'Frutusy',
+                  headerRight: buttonCart
             }} />
           </Stack.Navigator>
         </NavigationContainer>
@@ -135,8 +154,11 @@ export default class App extends React.Component{
   }
 }
 
+
+
 const styles = StyleSheet.create({
   headerView:{
     backgroundColor:"#FFE656",
   },
 });
+
