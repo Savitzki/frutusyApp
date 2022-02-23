@@ -12,6 +12,8 @@ import ProductView from './src/views/Product/ProductView';
 import ListProductView from './src/views/Product/ListProductsView';
 import PaymentView from './src/views/Payment/PaymentView';
 import CartResume from './src/views/Cart/CartResume';
+import AddressView from './src/views/Payment/AddressView';
+import PaymentMethod from './src/views/Payment/PaymentMethod';
 
 import AppLoading from 'expo-app-loading';
 import * as Font from 'expo-font';
@@ -86,11 +88,25 @@ export default class App extends React.Component{
               title: 'Cesta'
             }}/>
 
-            <Stack.Screen name='payment' component={PaymentView} 
+            <Stack.Screen name='payment' component={PaymentView} initialParams={{ address: {} }}
               options={{ headerTintColor: '#373737', headerStyle: styles.headerView, 
               headerTitleStyle: { fontFamily: 'Baloo-semiBold', fontSize: 25}, 
               headerTitleAlign: 'center',
               title: 'Finalizar pedido'
+            }}/>
+
+            <Stack.Screen name='address' component={AddressView} 
+              options={{ headerTintColor: '#373737', headerStyle: styles.headerView, 
+              headerTitleStyle: { fontFamily: 'Baloo-semiBold', fontSize: 25}, 
+              headerTitleAlign: 'center',
+              title: 'Meus endereços'
+            }}/>
+
+            <Stack.Screen name='paymentMethod' component={PaymentMethod} 
+              options={{ headerTintColor: '#373737', headerStyle: styles.headerView, 
+              headerTitleStyle: { fontFamily: 'Baloo-semiBold', fontSize: 25}, 
+              headerTitleAlign: 'center',
+              title: 'Metodos de pagamento'
             }}/>
 
             <Stack.Screen name='product' component={ProductView}
@@ -99,8 +115,7 @@ export default class App extends React.Component{
                 headerTitleStyle: { fontFamily: 'Baloo-semiBold', fontSize: 25}, 
                 headerTitleAlign: 'center',
                 title: 'Item',
-              }}
-            />
+              }}/>
 
             <Stack.Screen name='home' 
                 component={HomeView} 

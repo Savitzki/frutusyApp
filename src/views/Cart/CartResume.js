@@ -15,13 +15,13 @@ export default function CartResume( { navigation } ){
     const Item = ({nameProduct, price, measurementProd }) => (
         <View style={{marginHorizontal: 5, flexDirection: 'row', alignItems: 'center'}}>
           <Text style={styles.text_h2}>{nameProduct} - </Text>
-          <Text style={styles.text}>R$ {price}/{measurementProd}</Text>
+          <Text style={styles.text}>R$ {price} por 1 {measurementProd}</Text>
         </View>
       );
 
       const renderItem = ({ index, item }) => (
         <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
-                <Item nameProduct={item.nameProduct} price={item.price.toFixed(2)} measurementProd={item.measurementProd}/>
+                <Item nameProduct={item.nameProduct} price={item.price} measurementProd={item.measurementProd}/>
                 <TouchableOpacity onPress={() => removeCart(index)}>
                     <Ionicons name="close" size={28} color={'red'} style={{padding: 5, marginTop: 5, }}/>
                 </TouchableOpacity>

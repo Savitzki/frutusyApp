@@ -11,8 +11,8 @@ export default CartProvider = ({ children }) => {
 
     useEffect( () => {
         let value = 0
-        cart.map((item, index) => {
-            value = value + item.price
+        cart.map((item) => {
+            value = value + item.price;
 
         })
         setTotalValue(value);
