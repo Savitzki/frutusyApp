@@ -1,6 +1,6 @@
 import React from 'react';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
-import { Ionicons } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
 import {InitView, ProfileView, SolicitView} from './../index';
 import styles from './StyleHome';
 
@@ -24,7 +24,7 @@ export default function HomeView() {
                     component={InitView}
                     options={{
                     tabBarIcon:({ color })=>(
-                        <Ionicons name="md-home" size={24} color={color} />
+                        <MaterialIcons name="home" size={24} color={color} />
                     ),
                 }}
             />
@@ -33,7 +33,7 @@ export default function HomeView() {
                     component={SolicitView}
                     options={{
                     tabBarIcon:({ color })=>(
-                        <Ionicons name="reader" size={24} color={color} />
+                        <MaterialIcons name="account-balance-wallet" size={24} color={color} />
                     ),
                 }}
             />
@@ -42,7 +42,7 @@ export default function HomeView() {
                     component={ProfileView}
                     options={{
                     tabBarIcon:({ color })=>(
-                        <Ionicons name="person" size={24} color={color} />
+                        <MaterialIcons name="person" size={24} color={color} />
                     ),
                 }}
             />

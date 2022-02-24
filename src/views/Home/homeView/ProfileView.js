@@ -16,6 +16,9 @@ export default function ProfileView( {navigation} ) {
                 routes:[{name: 'login'}]
             });
         }).catch((error) => {
+            navigation.reset({
+                routes:[{name: 'login'}]
+            });
         // An error happened.
         });
     }
@@ -24,21 +27,23 @@ export default function ProfileView( {navigation} ) {
         <View style={styles.container}>
                     <Text style={styles.text_profile}>Olá Marina</Text>
 
-                    <TouchableOpacity style={styles.section}>
-                        <Ionicons name="document-outline" size={24} color={'#000'} />
-                        <Text style={styles.text_view}>Meus dados</Text>
-                    </TouchableOpacity>
+            <View style={styles.section}>
+                <TouchableOpacity style={styles.btn_section}>
+                    <Ionicons name="document-outline" size={24} color={'#000'} />
+                    <Text style={styles.text_btn_profile}>Meus dados</Text>
+                </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.section}>
-                        <Ionicons name="location-outline" size={24} color={'#000'}/>
-                        <Text style={styles.text_view}>Meus endereços</Text>
-                    </TouchableOpacity>
+                <TouchableOpacity style={styles.btn_section}>
+                    <Ionicons name="location-outline" size={24} color={'#000'}/>
+                    <Text style={styles.text_btn_profile}>Meus endereços</Text>
+                </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.section}
-                        onPress={ LogOut }>
-                        <Ionicons name="exit-outline" size={24} color={'#000'}/>
-                        <Text style={styles.text_view}>Sair</Text>
-                    </TouchableOpacity>
+                <TouchableOpacity style={styles.btn_section}
+                    onPress={ LogOut }>
+                    <Ionicons name="exit-outline" size={24} color={'#000'}/>
+                    <Text style={styles.text_btn_profile}>Sair</Text>
+                </TouchableOpacity>
+            </View>
         </View>
     )
 }

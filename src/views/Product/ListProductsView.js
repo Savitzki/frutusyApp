@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import {Text, View, FlatList, TouchableOpacity} from 'react-native';
+import {Text, View, FlatList, TouchableOpacity, Image, Alert} from 'react-native';
 import { Searchbar } from 'react-native-paper';
 
 import db from '../../firebaseConection';
 import { collection, doc, getDocs, query, where } from "firebase/firestore";
 
 import styles from './StyleProduct';
-import { Ionicons } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';
 
 export default function ListProductView( { navigation, route } ){
 
@@ -35,7 +35,7 @@ export default function ListProductView( { navigation, route } ){
       setData(dataProducts);
     })
     .catch((error) => {
-      Alert.alert('Erro', 'erro ao criar conta')
+      Alert.alert('Vish', 'estamos enfrentando problemas, tente mais tarde')
       const errorCode = error.code;
       const errorMessage = error.message;
     });
@@ -79,7 +79,7 @@ export default function ListProductView( { navigation, route } ){
           <TouchableOpacity style={[styles.button_item,{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}]}
             onPress={() => handleProductClick(item.id)}>
             <Item nameProduct={item.nameProduct} price={item.price.toFixed(2)} measurementProd={item.measurementProd}/>
-            <Ionicons name="basket" size={24} color="#373737" style={{marginRight: 20}}/>
+            <FontAwesome name="shopping-basket" size={24} color="#373737" style={{marginRight: 20}}/>
           </TouchableOpacity>
         </View>
       );

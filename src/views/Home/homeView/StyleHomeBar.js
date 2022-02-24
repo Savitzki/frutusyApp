@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
     container:{
         flex: 1,
         flexDirection: "column",
-        alignItems: 'flex-start',
+        alignItems: 'center',
         justifyContent: 'flex-start',
         backgroundColor: '#f2f2f2',
         padding: 10,
@@ -20,6 +20,12 @@ const styles = StyleSheet.create({
         color: '#373737',
         fontFamily: 'Baloo-regular',
         marginBottom: 10,
+    },
+    text_btn_profile:{
+        fontSize: 20,
+        color: '#373737',
+        fontFamily: 'Baloo-regular',
+        marginLeft: 10,
     },
     text_profile:{
         fontSize: 24,
@@ -71,16 +77,40 @@ const styles = StyleSheet.create({
         marginHorizontal: 10
     },
     section:{
-        flexDirection: 'row', 
-        alignItems: 'center', 
-        width: '90%',
+        alignItems: 'flex-start', 
+        width: '100%',
+        height: '100%',
         marginBottom: 2, 
-        backgroundColor: '#f2f2f2',
-        height: 50,
         padding: 5,
-        marginHorizontal: 10,
+        marginHorizontal: 20,
+    },
+    btn_section:{
+        flexDirection: 'row',
+        alignItems: 'center', 
+        backgroundColor: '#f2f2f2',
         borderBottomWidth: 1,
         borderColor: '#ccc',
+        width: '100%',
+        height: 50,
+        paddingLeft: 10,
     },
+    btn_solicit:{
+        marginTop: 10, 
+        borderWidth: 1, 
+        borderColor: '#FFE656', 
+        width: '90%', 
+        height: 100,
+        alignItems: 'center', 
+        justifyContent: 'center', 
+        elevation: 1, 
+        backgroundColor: '#FFFFFF', 
+        borderRadius: 15, 
+    },
+    view_solicit:{
+        flex: 1,
+        width: '100%',
+        alignItems: 'center',
+        marginTop: 10,
+    }
 });
 export default styles;

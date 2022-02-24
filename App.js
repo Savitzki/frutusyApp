@@ -1,6 +1,6 @@
 import React  from 'react';
 import { StyleSheet, TouchableOpacity, Text } from "react-native";  
-import { Ionicons } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';
 
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -29,7 +29,7 @@ const buttonCart = () => {
   if(cart.length !== 0){
     return(
       <TouchableOpacity style={{marginRight: 20, alignItems: 'center', justifyContent: 'center'}} onPress={() => navigation.navigate('cartResume')}>
-        <Ionicons name="basket-outline" size={24} color="#373737" />
+        <FontAwesome name="shopping-basket" size={24} color="#373737"/>
         <Text style={{fontFamily: 'Baloo-bold', fontSize: 16, color: '#373737'}}> itens</Text>
       </TouchableOpacity>
     )
@@ -153,8 +153,6 @@ export default class App extends React.Component{
     );
   }
 }
-
-
 
 const styles = StyleSheet.create({
   headerView:{
