@@ -30,8 +30,11 @@ const styles = StyleSheet.create({
         alignItems: 'flex-start',
         justifyContent: 'center',
         borderRadius: 10,
-        backgroundColor: '#E8E8E8',
+        // backgroundColor: '#E8E8E8',
+        backgroundColor: '#F2F2F2',
         marginVertical: 1,
+        borderWidth: 2,
+        borderColor: '#FFE656',
     },
     tittle_item:{
         fontFamily: 'Baloo-semiBold', 

@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import {Text, View, FlatList, TouchableOpacity} from 'react-native';
-import { Searchbar, FAB } from 'react-native-paper';
+import { Searchbar } from 'react-native-paper';
 
 import db from '../../firebaseConection';
 import { collection, doc, getDocs, query, where } from "firebase/firestore";
 
 import styles from './StyleProduct';
+import { Ionicons } from '@expo/vector-icons';
 
 export default function ListProductView( { navigation, route } ){
 
@@ -75,15 +76,18 @@ export default function ListProductView( { navigation, route } ){
 
       const renderItem = ({ item }) => (
         <View style={{alignItems: 'center'}}>
-          <TouchableOpacity style={styles.button_item}
+          <TouchableOpacity style={[styles.button_item,{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}]}
             onPress={() => handleProductClick(item.id)}>
             <Item nameProduct={item.nameProduct} price={item.price.toFixed(2)} measurementProd={item.measurementProd}/>
+            <Ionicons name="basket" size={24} color="#373737" style={{marginRight: 20}}/>
           </TouchableOpacity>
         </View>
       );
 
     return(
         <View style={styles.container}>
+          <Text style={styles.text_h2}> Clique em um item para detalhes</Text>
+          <View style={{width: '90%', marginTop: 5}}>
             <Searchbar
               placeholder="Pesquisar"
               onChangeText={onChangeSearch}
@@ -91,8 +95,9 @@ export default function ListProductView( { navigation, route } ){
               inputStyle={styles.searchBar}
               style={{marginBottom: 5}}
             />
+          </View>
 
-            <FlatList style={styles.flatlist}
+            <FlatList style={styles.flatlist} showsVerticalScrollIndicator ={false}
                     data={data}
                     renderItem={renderItem}
                     keyExtractor={item => item.id}
