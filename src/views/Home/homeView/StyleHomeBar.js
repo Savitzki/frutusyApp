@@ -13,14 +13,13 @@ const styles = StyleSheet.create({
     text_view_bold:{
         fontSize: 22,
         color: '#373737',
-        margin: 5,
         fontFamily: 'Baloo-bold',
     },
     text_view:{
         fontSize: 20,
         color: '#373737',
-        margin: 5,
         fontFamily: 'Baloo-regular',
+        marginBottom: 10,
     },
     text_profile:{
         fontSize: 24,
@@ -38,12 +37,12 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         elevation: 3,
         marginBottom: 5,
+        backgroundColor: '#FFE656',
     },
     img_button:{
-        width: 36,
-        height: 36,
+        width: 50,
+        height: 50,
         marginRight: 10,
-        tintColor: '#373737',
     },
     text_button:{
         fontSize: 20,

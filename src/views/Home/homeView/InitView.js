@@ -37,39 +37,31 @@ export default function InitView( { navigation } ) {
             {/* <ImageBackground source={require('../../../assets/img/BG.png')} style={styles.imageBackground}>   */}
 
                         {/* texto de apoio */}
-                        <View style={{marginTop: 10, marginBottom: 10, alignItems: 'center'}}>
-                            <Text style={styles.text_view_bold}>Escolha uma categoria</Text>
-                            <Text style={styles.text_view}>e monte sua cesta</Text>
+                        <View style={{alignItems: 'center'}}>
+                            <Text style={styles.text_view_bold}>Bem vindo(a) ao delivery de Hortifruti</Text>
+                            <Text style={styles.text_view}>escolha uma categoria e monte sua cesta</Text>
+                             
 
-                        {/* Opcao FRUTA */}
-                        <TouchableOpacity style={[styles.button, { backgroundColor:'#d45959' }]} activeOpacity={0.3} 
-                            onPress={ handleClickFruit }>
-                            <View style={[styles.button_set]} >
-                                <Image style={[styles.img_button]} source={require('../../../assets/img/melancia-96.png')} />
-                                <Text style={styles.text_view_bold}>FRUTAS</Text>
-                            </View>
-                        </TouchableOpacity>
+                            {/* Opcao FRUTA */}
+                            <TouchableOpacity style={[styles.button]} activeOpacity={0.3} onPress={ handleClickFruit }>
+                                    <Image style={[styles.img_button]} source={require('../../../assets/img/abacaxi.png')} />
+                                    <Text style={styles.text_view_bold}>FRUTAS</Text>
+                            </TouchableOpacity>
 
-                        {/* Opcao VERDURA */}
-                        <TouchableOpacity style={[styles.button, { backgroundColor:'#9fd76d' }] } activeOpacity={0.3}
-                            onPress={ handleClickGreens }>
-                            <View style={[styles.button_set]} >
-                                <Image style={[styles.img_button]} source={require('../../../assets/img/salada-96.png')} />
-                                <View style={{alignItems: 'center'}}>
-                                    <Text style={styles.text_view_bold}>VERDURAS</Text>
-                                    <Text style={styles.text_view}>e temperos</Text>
-                                </View>
-                            </View>
-                        </TouchableOpacity>
+                            {/* Opcao VERDURA */}
+                            <TouchableOpacity style={[styles.button] } activeOpacity={0.3} onPress={ handleClickGreens }>
+                                    <Image style={[styles.img_button]} source={require('../../../assets/img/brocolis.png')} />
+                                    <View style={{alignItems: 'center'}}>
+                                        <Text style={styles.text_view_bold}>VERDURAS</Text>
+                                        <Text style={styles.text_view}>e temperos</Text>
+                                    </View>
+                            </TouchableOpacity>
 
-                        {/* Opcao LEGUMEs */}
-                        <TouchableOpacity style={[styles.button, { backgroundColor:'#FF941D' }]} activeOpacity={0.3}
-                            onPress={ handleClickVegetable }>
-                            <View style={[styles.button_set]} >
-                                <Image style={[styles.img_button,]} source={require('../../../assets/img/batata-96.png')} />
-                                <Text style={styles.text_view_bold}>LEGUMES</Text>
-                            </View>
-                        </TouchableOpacity>
+                            {/* Opcao LEGUMEs */}
+                            <TouchableOpacity style={[styles.button]} activeOpacity={0.3} onPress={ handleClickVegetable }>
+                                    <Image style={[styles.img_button,]} source={require('../../../assets/img/rabanete.png')} />
+                                    <Text style={styles.text_view_bold}>LEGUMES</Text>
+                            </TouchableOpacity>
                         </View>
 
                 {/* </ImageBackground> */}
